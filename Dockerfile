@@ -1,6 +1,8 @@
 from centos:7
 RUN yum update -y
 RUN yum install wget unzip libXext libXt-devel libXmu -y
+ENV JAVA_VERSION 8u31
+ENV BUILD_VERSION b13
 RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
 
 RUN yum -y install /tmp/jdk-8-linux-x64.rpm && \
