@@ -1,5 +1,4 @@
-from centos:latest
-RUN mkdir /mcr-install
+from centos:7
 RUN yum update -y
 RUN yum install wget unzip libXext libXt-devel libXmu -y
 RUN mkdir /mcr-install && cd /mcr-install &&  \
