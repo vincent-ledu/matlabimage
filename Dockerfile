@@ -7,7 +7,7 @@ RUN \
   apt-get install -y oracle-java8-installer && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
-ENV JAVA_HOME /usr/java/latest
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 ENV PATH=$PATH:$JAVA_HOME/bin/
 RUN mkdir /mcr-install && cd /mcr-install &&  \
     wget -nv http://ssd.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip && \
