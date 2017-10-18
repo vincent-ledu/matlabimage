@@ -1,10 +1,17 @@
 from centos:7
 RUN yum update -y
 RUN yum install wget unzip libXext libXt-devel libXmu -y
+RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSION-$BUILD_VERSION/jdk-$JAVA_VERSION-linux-x64.rpm" -O /tmp/jdk-8-linux-x64.rpm
+
+RUN yum -y install /tmp/jdk-8-linux-x64.rpm && \
+    alternatives --install /usr/bin/java jar /usr/java/latest/bin/java 200000 && \
+    alternatives --install /usr/bin/javaws javaws /usr/java/latest/bin/javaws 200000 && \
+    alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
 RUN mkdir /mcr-install && cd /mcr-install &&  \
     wget -nv http://ssd.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip && \
     unzip MCR_R2012b_glnxa64_installer.zip && \
     ./install -mode silent -agreeToLicense yes && rm -rf /mcr-install
+ENV JAVA_HOME /usr/java/latest
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/runtime/glnxa64:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/bin/glnxa64:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/sys/os/glnxa64:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/sys/java/jre/glnxa64/jre/lib/amd64/native_threads:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/sys/java/jre/glnxa64/jre/lib/amd64/server:/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/sys/java/jre/glnxa64/jre/lib/amd64
 ENV XAPPLRESDIR=/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/X11/app-defaults
 ENV MCR_CACHE_VERBOSE=true
