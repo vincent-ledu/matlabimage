@@ -12,5 +12,3 @@ ENV MCR_CACHE_VERBOSE=true
 ENV MCR_CACHE_ROOT=/tmp
 ENV JAVA_HOME=/usr/local/MATLAB/MATLAB_Compiler_Runtime/v80/sys/java/jre/glnxa64/jre/
 ENV PATH=$PATH:$JAVA_HOME/bin/
-RUN mkdir /bgm
-ADD bgm /bgm/
