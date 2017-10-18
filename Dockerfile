@@ -1,7 +1,6 @@
-from ubuntu:16.04
-RUN apt-get update -y
-RUN apt-get install wget unzip -y
-#libXext libXt-devel libXmu -y
+from centos:7
+RUN yum update -y
+RUN yum install wget unzip libXext libXt-devel libXmu -y
 RUN mkdir /mcr-install && cd /mcr-install &&  \
     wget -nv http://ssd.mathworks.com/supportfiles/MCR_Runtime/R2012b/MCR_R2012b_glnxa64_installer.zip && \
     unzip MCR_R2012b_glnxa64_installer.zip && \
